@@ -1,8 +1,12 @@
 import * as express from "express";
+import {static as eStatic, urlencoded} from "express";
 import 'express-async-errors';
 import * as methodOverride from "method-override";
-import {static as eStatic, urlencoded} from "express";
 import {engine} from "express-handlebars";
+import {homeRouter} from './routers/home';
+import {warriorRouter} from "./routers/warrior";
+import {arenaRouter} from "./routers/arena";
+import {hallOfFameRouter} from "./routers/hall-of-fame";
 
 const app = express();
 
@@ -17,11 +21,17 @@ app.engine('.hbs', engine({
 }));
 app.set('view engine', '.hbs');
 
-app.get('/', (req, res) => {
-   res.send('Hello!');
-});
+// app.get('/', (req, res) => {
+//     res.send('Hello!');
+// });
 
 //app.use(handleError);
+
+app.use('/', homeRouter);
+app.use('/warrior', warriorRouter);
+app.use('/arena', arenaRouter);
+app.use('/hall-of-fame', hallOfFameRouter);
+
 
 app.listen(3000, 'localhost', () => {
     console.log('Listening on http://localhost:3000');

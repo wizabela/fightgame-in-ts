@@ -59,7 +59,17 @@ v1.0
 1. SKonfigurować WebstormProjects
 2. Potrzebne paczki i konfiguracja TYPESCRIPT
 3. Konfiguracja expressu. Folder publiczny - pliki statyczne
-4. Ogólna struktura routerów - ścieżek - zaplanować jakie te ścieżki będą
+4. Ogólna struktura routerów - ścieżek - zaplanować jakie te ścieżki będą:
+Strona główna
+/
+Rejestracja Wojownika
+ formularz
+ zapisanie
+Arena walk
+ formularz wyboru uzytkownika
+ przeprowadzenie walki - log walki
+Sala sław
+ lista najlepszych wojowników
 5. Zaplanowanie widoków/ ogólna struktura widoków/ ogólna struktura
 6. Rekordy dla Wojownika
 7. Logika związana z tworzeniem wojowników
