@@ -58,7 +58,7 @@ PLAN developmentu:
 v1.0
 1. SKonfigurować WebstormProjects
 2. Potrzebne paczki i konfiguracja TYPESCRIPT
-3. Folder publiczny - pliki statyczne
+3. Konfiguracja expressu. Folder publiczny - pliki statyczne
 4. Ogólna struktura routerów - ścieżek - zaplanować jakie te ścieżki będą
 5. Zaplanowanie widoków/ ogólna struktura widoków/ ogólna struktura
 6. Rekordy dla Wojownika
