@@ -5,5 +5,5 @@ export const hallOfFameRouter = Router();
 hallOfFameRouter
 
     .get('/', (req, res) => {
-       res.send('List of the best players');
+       res.render('hall-of-fame/list');
     });
