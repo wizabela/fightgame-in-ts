@@ -72,6 +72,16 @@ Sala sław
  lista najlepszych wojowników
 5. Zaplanowanie widoków/ ogólna struktura widoków/ ogólna struktura
 6. Rekordy dla Wojownika
+ Nazwa db: megak_arena
+ Tabele:
+    - warrior
+        - ID - UUID (VARCHAR(36))
+        - Imię - VARCHAR(50) - unikalne
+        - Siła - TINYINT(2) - BO MAX 10
+        - Obrona - TINYINT(2)
+        - Wytrzymałość - TINYINT(2)
+        - Zwinność - TINYINT(2)
+        - Liczba zwycięstw: domyślna wartość 0 - INT(11)
 7. Logika związana z tworzeniem wojowników
 8. Logika związana z salą sław
 9. Logika związana z areną walk
