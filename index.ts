@@ -8,6 +8,8 @@ import {warriorRouter} from "./routers/warrior";
 import {arenaRouter} from "./routers/arena";
 import {hallOfFameRouter} from "./routers/hall-of-fame";
 import './utlis/db';
+import {handleError} from './utlis/errors'
+
 
 const app = express();
 
@@ -26,12 +28,12 @@ app.set('view engine', '.hbs');
 //     res.send('Hello!');
 // });
 
-//app.use(handleError);
-
 app.use('/', homeRouter);
 app.use('/warrior', warriorRouter);
 app.use('/arena', arenaRouter);
 app.use('/hall-of-fame', hallOfFameRouter);
+
+app.use(handleError);
 
 
 app.listen(3000, 'localhost', () => {
