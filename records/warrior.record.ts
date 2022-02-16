@@ -23,7 +23,7 @@ export class WarriorRecord {
         const sumOfSkills = stats.reduce((prev, curr) => prev + curr, 0);
 
         if (sumOfSkills !== 10) {
-            throw new ValidationError(`Suma wszystkich statystyk musi wynosić 10'. Aktualnie jest to ${sumOfSkills}.`);
+            throw new ValidationError(`Suma wszystkich statystyk musi wynosić 10. Aktualnie jest to ${sumOfSkills}.`);
         }
 
         for (const stat of stats) {
@@ -76,12 +76,11 @@ export class WarriorRecord {
     }
 
     static async listTop(topCount: number): Promise<WarriorRecord[]> {
-        const [results] = (await pool.execute("SELECT * FROM `warriors` ORDER BY `wins` DESC LIMIT :topcount", {
+        const [results] = await pool.execute("SELECT * FROM `warriors` ORDER BY `wins` DESC LIMIT :topCount", {
             topCount,
-        })) as WarriorRecordResults;
+        }) as WarriorRecordResults;
 
-    return
-        results.map(obj => new WarriorRecord(obj));
+        return results.map(obj => new WarriorRecord(obj));
     }
     static async isNameTaken(name: string): Promise<boolean> {
         const [results] = await pool.execute("SELECT * FROM `warriors` WHERE `name` = :name", {

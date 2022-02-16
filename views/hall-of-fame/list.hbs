@@ -1,6 +1,54 @@
 <h2>Sala sław</h2>
 <table>
+    <thead>
     <tr>
-        <td></td>
+        <th>#</th>
+        <th>Ilość zwycięstw</th>
+        <th>Imię</th>
     </tr>
+    </thead>
+    <tbody>
+    {{#each warriors}}
+        <tr>
+            <th>
+                {{@index}}
+            </th>
+            <td>
+                {{this.wins}}
+            </td>
+            <td>
+                {{this.name}}
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
 </table>
+
+<!--    <tbody>-->
+        <!--    {{#each clients}}-->
+<!--        <tr>-->
+<!--            <th>-->
+<!--                <a href="mailto:{{this.mail}}" target="_blank">{{this.mail}}</a>-->
+<!--            </th>-->
+<!--            <td>-->
+<!--                <a href="/client/{{this.id}}">{{this.name}}</a>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                {{this.nextContactAt}}-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a href="/client/{{this.id}}">Szczegóły</a>-->
+<!--                <form method="post" action="/client/{{this.id}}?_method=DELETE">-->
+<!--                    <button type="submit">Usuń</button>-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        </tr>-->
+        <!--    {{/each}}-->
+<!--    </tbody>-->
+<!--</table>-->
+
+<!--<p>-->
+<!--<form method="get" action="/client/form/add">-->
+<!--    <button type="submit">Dodaj nowego klienta</button>-->
+<!--</form>-->
+<!--</p>-->
