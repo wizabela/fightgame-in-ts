@@ -8,7 +8,7 @@ warriorRouter
     .get('/add-form', (req, res) => {
        res.render('warrior/add-form');
     })
-    .post('/', (req, res) => {
+    .post('/', async (req, res) => {
         const warrior = new WarriorRecord({
             ...req.body,
             power: Number(req.body.power),
@@ -16,5 +16,6 @@ warriorRouter
             stamina: Number(req.body.stamina),
             agility: Number(req.body.agility),
         });
+        await warrior.insert();
         res.render('warrior/warrior-added');
     });
