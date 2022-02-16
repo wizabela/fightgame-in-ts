@@ -14,7 +14,8 @@ export class WarriorRecord {
     public readonly agility: number;
     public readonly wins?: number;
 
-    constructor(obj: Omit<WarriorRecord, 'insert' | 'update'>) {
+    constructor(obj: Omit<WarriorRecord, 'insert' | 'update'>
+    ) {
         const {id, name, power, defence, stamina, agility, wins} = obj;
 
         const stats = [power, defence, stamina, agility];
@@ -61,24 +62,31 @@ export class WarriorRecord {
     }
 
     static async getOne(id: string): Promise<WarriorRecord | null> {
-        const [results] = await pool.execute("SELECT * FROM `warrior` WHERE `id` = :id", {
-            id: id,
+        const [results] = await pool.execute("SELECT * FROM `warriors` WHERE `id` = :id", {
+            id,
         }) as WarriorRecordResults;
 
         return results.length === 0 ? null : results[0];
     }
 
     static async listAll(): Promise<WarriorRecord[]> {
-        const [results] = await pool.execute("SELECT * FROM `warrior`") as WarriorRecordResults;
+        const [results] = await pool.execute("SELECT * FROM `warriors`") as WarriorRecordResults;
 
         return results.map(obj => new WarriorRecord(obj));
     }
 
     static async listTop(topCount: number): Promise<WarriorRecord[]> {
-        const [results] = await pool.execute("SELECT * FROM `warrior` ORDER BY `wins` DESC LIMIT :topcount", {
+        const [results] = (await pool.execute("SELECT * FROM `warriors` ORDER BY `wins` DESC LIMIT :topcount", {
             topCount,
-        }) as WarriorRecordResults;
+        })) as WarriorRecordResults;
 
-        return results.map(obj => new WarriorRecord(obj));
+    return
+        results.map(obj => new WarriorRecord(obj));
+    }
+    static async isNameTaken(name: string): Promise<boolean> {
+        const [results] = await pool.execute("SELECT * FROM `warriors` WHERE `name` = :name", {
+            name,
+        }) as WarriorRecordResults;
+        return results.length > 0;
     }
 }
