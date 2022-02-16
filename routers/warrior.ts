@@ -13,7 +13,7 @@ warriorRouter
             ...req.body,
             power: Number(req.body.power),
             defence: Number(req.body.defence),
-            resilience: Number(req.body.resilience),
+            stamina: Number(req.body.stamina),
             agility: Number(req.body.agility),
         });
         res.render('warrior/warrior-added');

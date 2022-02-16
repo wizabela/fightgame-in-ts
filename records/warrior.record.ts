@@ -10,14 +10,14 @@ export class WarriorRecord {
     public readonly name: string;
     public readonly power: number;
     public readonly defence: number
-    public readonly resilience: number;
+    public readonly stamina: number;
     public readonly agility: number;
     public readonly wins?: number;
 
     constructor(obj: Omit<WarriorRecord, 'insert' | 'update'>) {
-        const {id, name, power, defence, resilience, agility, wins} = obj;
+        const {id, name, power, defence, stamina, agility, wins} = obj;
 
-        const stats = [power, defence, resilience, agility];
+        const stats = [power, defence, stamina, agility];
 
         const sumOfSkills = stats.reduce((prev, curr) => prev + curr, 0);
 
@@ -37,17 +37,17 @@ export class WarriorRecord {
         this.name = name;
         this.power = power;
         this.defence = defence;
-        this.resilience = resilience;
+        this.stamina = stamina;
         this.agility = agility;
         this.wins = wins ?? 0;
     }
     async insert(): Promise<string> {
-        await pool.execute("INSERT INTO `warriors`(`id`, `name`, `power`, `defence`, `resilience`, `agility`, `wins`) VALUES (:id, :name, :power, :defence, :resilience, :agility, :wins)", {
+        await pool.execute("INSERT INTO `warriors`(`id`, `name`, `power`, `defence`, `stamina`, `agility`, `wins`) VALUES (:id, :name, :power, :defence, :stamina, :agility, :wins)", {
             id: this.id,
             name: this.name,
             power: this.power,
             defence: this.defence,
-            resilience: this.resilience,
+            stamina: this.stamina,
             agility: this.agility,
             wins: this.wins,
         });
