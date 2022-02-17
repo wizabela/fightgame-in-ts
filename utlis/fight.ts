@@ -14,7 +14,7 @@ export const fight = (warrior1: WarriorRecord, warrior2: WarriorRecord): {
     const warrior2Obj = {
         hp: warrior2.stamina * 10,
         dp: warrior2.defence,
-        warrior: warrior1,
+        warrior: warrior2,
     };
 
     let attacker = warrior1Obj;
@@ -35,11 +35,10 @@ export const fight = (warrior1: WarriorRecord, warrior2: WarriorRecord): {
                 log.push(`${attacker.warrior.name} przełamał obronę ${defender.warrior.name} zadając mu ${-defender.dp} obrażeń.`);
 
                 defender.hp += defender.dp;
-            } else {
-                log.push(`${attacker.warrior.name} zadał ${attackerPower} obrażeń ${defender.warrior.name}.`);
-
-                defender.hp -= attackerPower;
             }
+        } else {
+            log.push(`${attacker.warrior.name} zadał ${attackerPower} obrażeń ${defender.warrior.name}.`);
+            defender.hp -= attackerPower;
         }
         //obracanie zmiennych, zamiana defendera z attackerem:
         [defender, attacker] = [attacker, defender];
