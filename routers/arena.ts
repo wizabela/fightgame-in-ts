@@ -1,6 +1,7 @@
 import {Router} from "express";
 import {WarriorRecord} from "../records/warrior.record";
 import {ValidationError} from "../utlis/errors";
+import {fight} from "../utlis/fight";
 
 export const arenaRouter = Router();
 
@@ -27,7 +28,15 @@ arenaRouter
         if(!warrior2) {
             throw new ValidationError(`Nie znaleziono przeciwnika nr 2.`);
         }
+        const {log, winner} = fight(warrior1, warrior2);
+
+        console.log(winner, log);
+
+        winner.wins++;
+        await winner.update();
 
 
-        res.render('arena/fight');
+        res.render('arena/fight', {
+            log,
+        });
     }); //POST /arena/fight

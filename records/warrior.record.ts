@@ -12,7 +12,7 @@ export class WarriorRecord {
     public readonly defence: number
     public readonly stamina: number;
     public readonly agility: number;
-    public readonly wins?: number;
+    public wins?: number;
 
     constructor(obj: Omit<WarriorRecord, 'insert' | 'update'>
     ) {
@@ -56,7 +56,8 @@ export class WarriorRecord {
     }
 
     async update(): Promise<void> {
-        await pool.execute("UPDATE `warriors` SET `wins` = :wins", {
+        await pool.execute("UPDATE `warriors` SET `wins` = :wins WHERE id = :id", {
+            id: this.id,
             wins: this.wins,
         });
     }
@@ -66,7 +67,7 @@ export class WarriorRecord {
             id,
         }) as WarriorRecordResults;
 
-        return results.length === 0 ? null : results[0];
+        return results.length === 0 ? null : new WarriorRecord(results[0]);
     }
 
     static async listAll(): Promise<WarriorRecord[]> {
