@@ -5,7 +5,16 @@ import {FieldPacket} from "mysql2";
 
 type WarriorRecordResults = [WarriorRecord[], FieldPacket[]];
 
-export class WarriorRecord {
+export interface Warrior {
+    id?: string;
+    name: string;
+    power: number;
+    defence: number
+    stamina: number;
+    agility: number;
+}
+
+export class WarriorRecord implements Warrior {
     public id?: string;
     public readonly name: string;
     public readonly power: number;

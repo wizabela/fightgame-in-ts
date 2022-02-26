@@ -1,8 +1,8 @@
-import {WarriorRecord} from "../records/warrior.record";
+import {Warrior} from "../records/warrior.record";
 
-export const fight = (warrior1: WarriorRecord, warrior2: WarriorRecord): {
+export const fight = (warrior1: Warrior, warrior2: Warrior): {
     log: string[],
-    winner: WarriorRecord,
+    winner: Warrior
 } => {
     const log: string[] = [];
 
@@ -40,12 +40,17 @@ export const fight = (warrior1: WarriorRecord, warrior2: WarriorRecord): {
             log.push(`${attacker.warrior.name} zadał ${attackerPower} obrażeń ${defender.warrior.name}.`);
             defender.hp -= attackerPower;
         }
+
+        // if (defender.hp <= 0) {
+        //     break;
+        // }
+
         //obracanie zmiennych, zamiana defendera z attackerem:
         [defender, attacker] = [attacker, defender];
 
-    } while (defender.hp > 0);
+    } while (defender.hp > 0 && attacker.hp > 0); //  (defender.hp > 0);
 
-    const winner = defender.warrior;
+    const winner = attacker.hp > 0 ? attacker.warrior : defender.warrior;
     log.push(`${winner.name} zwyciężył!`);
 
     return {

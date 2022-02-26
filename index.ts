@@ -1,7 +1,7 @@
-import * as express from "express";
+import express from "express";
 import {static as eStatic, urlencoded} from "express";
 import 'express-async-errors';
-import * as methodOverride from "method-override";
+import methodOverride from "method-override";
 import {engine} from "express-handlebars";
 import {homeRouter} from './routers/home';
 import {warriorRouter} from "./routers/warrior";
